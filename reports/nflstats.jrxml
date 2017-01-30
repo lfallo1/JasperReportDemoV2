@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-01-30T15:27:25 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="nflstats" pageWidth="1500" pageHeight="612" orientation="Landscape" columnWidth="1460" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d1dfff3b-3a58-41bc-9af3-6fe753ebee1e">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="adapters\NflStatsAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<subDataset name="nflstats_rushing_yds" uuid="b87df0f6-003e-4e1a-8363-98cc7db7c369">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="adapters\NflStatsAdapter.xml"/>
+		<queryString language="SQL">
+			<![CDATA[select g.game_number, r.* from nfl.game_rushing r inner join nfl.game g on r.game_identifier = g.game_identifier where year_id = 2003 and player_identifier = 'LewiJa00' order by g.date;]]>
+		</queryString>
+		<field name="game_number" class="java.lang.Integer"/>
+		<field name="id" class="java.lang.Long"/>
+		<field name="rushingyardsperattempt" class="java.lang.Double"/>
+		<field name="rushingattempts" class="java.lang.Integer"/>
+		<field name="rushingtouchdowns" class="java.lang.Integer"/>
+		<field name="rushingyards" class="java.lang.Integer"/>
+		<field name="name" class="java.lang.String"/>
+		<field name="player_identifier" class="java.lang.String"/>
+		<field name="game_identifier" class="java.lang.String"/>
+		<field name="team_identifier" class="java.lang.String"/>
+		<field name="team_score" class="java.lang.Integer"/>
+		<field name="opp_score" class="java.lang.Integer"/>
+	</subDataset>
+	<queryString>
+		<![CDATA[select 
+	g.home_team_identifier, g.home_score, g.away_team_identifier, g.away_score, g.year_id,
+    p.player_identifier, p.name, p.team_identifier, p.yards, p.completionpercentage, p.attempts, p.completions, p.interceptions, p.touchdowns, p.rating, p.yardsperattempt,  p.sacks, p.sackyards 
+from 
+	nfl.game_passing p
+inner join nfl.game g on p.game_identifier = g.game_identifier
+where 
+	p.completionpercentage > 80 and
+    ((p.team_identifier = g.home_team_identifier and g.home_score < g.away_score) or
+    (p.team_identifier = g.away_team_identifier and g.home_score > g.away_score)) and
+    p.attempts >= 25 
+order by 
+	p.yards desc]]>
+	</queryString>
+	<field name="home_team_identifier" class="java.lang.String"/>
+	<field name="home_score" class="java.lang.Integer"/>
+	<field name="away_team_identifier" class="java.lang.String"/>
+	<field name="away_score" class="java.lang.Integer"/>
+	<field name="year_id" class="java.lang.Integer"/>
+	<field name="player_identifier" class="java.lang.String"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="team_identifier" class="java.lang.String"/>
+	<field name="yards" class="java.lang.Integer"/>
+	<field name="completionpercentage" class="java.lang.Double"/>
+	<field name="attempts" class="java.lang.Integer"/>
+	<field name="completions" class="java.lang.Integer"/>
+	<field name="interceptions" class="java.lang.Integer"/>
+	<field name="touchdowns" class="java.lang.Integer"/>
+	<field name="rating" class="java.lang.Double"/>
+	<field name="yardsperattempt" class="java.lang.Double"/>
+	<field name="sacks" class="java.lang.Integer"/>
+	<field name="sackyards" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="80" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="30" width="510" height="30" uuid="3a738b24-0a26-4b3c-896b-5435ec48df0a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Most yards passing in loss when completing at least 80% passes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="205" height="30" uuid="574ded3d-9b09-4993-8b85-b09799e92317"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NFL Statistics]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="572" y="0" width="100" height="30" uuid="9e8767dd-29fa-4c12-bda8-e13b481fc850"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="670" y="0" width="100" height="30" uuid="6c3f5cd6-3107-4870-90a7-824dcc4b5127"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.grid.JSSGridBagLayout"/>
+			<staticText>
+				<reportElement x="0" y="0" width="112" height="30" uuid="783a8b26-9ad5-4eff-a1ff-9ac8c6c27551"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Home]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="112" y="0" width="112" height="30" uuid="57e4b8e6-ea93-4712-b72a-6aafca46de99"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Home Score]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="224" y="0" width="112" height="30" uuid="bda236ad-d6ce-494e-8769-c091b221f550"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Away]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="336" y="0" width="112" height="30" uuid="860eb892-1dae-463d-81c4-359013ef702a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Away Score]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="448" y="0" width="112" height="30" uuid="8edf3fc5-80b7-4fb5-b440-7e6077b65a06"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Year]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="560" y="0" width="112" height="30" uuid="55b09aa5-8e42-4a5c-b0c1-2eb928a4274b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="672" y="0" width="112" height="30" uuid="41a434a4-49e7-4b77-abe5-b32af46cb006"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Team]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="784" y="0" width="112" height="30" uuid="0950e73f-c9dc-4ca8-9a92-cc6d943dc5ea"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Yards]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="896" y="0" width="112" height="30" uuid="c99c0ffc-aa77-484d-aceb-5ef3e21f6590"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[attempts]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1008" y="0" width="112" height="30" uuid="a5109e16-04e5-470b-ac48-5d7b3ba83543"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[completions]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1120" y="0" width="112" height="30" uuid="0dc5b2e5-e8d9-442d-9c88-0ab4e5276b3c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[interceptions]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1232" y="0" width="112" height="30" uuid="0d93314d-4dea-4c50-bd31-876212094240"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[touchdowns]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1344" y="0" width="112" height="30" uuid="3d1547ab-fbf5-4567-9b96-70d39dec1957"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rating]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="343" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<textField>
+				<reportElement x="0" y="0" width="112" height="20" uuid="5d5cc006-f526-4c3c-87b0-5b62929bd8ca"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{home_team_identifier}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="0" width="112" height="20" uuid="2f351db3-2753-474a-97cc-f81ab27cc139"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{home_score}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="224" y="0" width="112" height="20" uuid="091f7662-c007-4040-8ced-b51662d4b03a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{away_team_identifier}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="336" y="0" width="112" height="20" uuid="ac20294a-cdd4-4df1-9eb0-907083286863"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{away_score}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="448" y="0" width="112" height="20" uuid="66b9f042-1338-40e2-be21-af448ba20948"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{year_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="560" y="0" width="112" height="20" uuid="57c50ed5-62d8-440a-8c91-6eb99259a912"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="672" y="0" width="112" height="20" uuid="8c46aeb3-fcf7-4068-9361-df8e916c3fbb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{team_identifier}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="784" y="0" width="112" height="20" uuid="af7118b9-5618-4b03-bfd4-2a75b2c441e3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{yards}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="896" y="0" width="112" height="20" uuid="92e7c510-d0d9-4655-92e0-de63cd72e56a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{attempts}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1008" y="0" width="112" height="20" uuid="1167af10-14e7-4adf-9c90-1e3c65cf117f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{completions}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1120" y="0" width="112" height="20" uuid="9ec1edec-ce71-4dfe-823a-e60604317c70"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{interceptions}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1232" y="0" width="112" height="20" uuid="c040c6f7-6cfa-4c7b-b129-859daca78e19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{touchdowns}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="1344" y="0" width="112" height="20" uuid="5649b54d-ce64-453e-bb3b-7bad2bb5695e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[((($F{completionpercentage} - 30)/20)  + ($F{touchdowns}/$F{attempts}*100)/(20/3.0) + (((9.5-(($F{interceptions})/$F{attempts})*100)) / 4.0) + (($F{yards}/$F{attempts})-3.0)/4.0)/0.06]]></textFieldExpression>
+			</textField>
+			<lineChart>
+				<chart evaluationTime="Report">
+					<reportElement x="730" y="60" width="729" height="260" uuid="02ab25a6-c46e-48e8-98d6-e04d3b086353"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<dataset>
+						<datasetRun subDataset="nflstats_rushing_yds" uuid="d92730dd-486d-410d-bbae-7968a43ab3d0">
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+					</dataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{player_identifier}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{game_number}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{rushingyards}]]></valueExpression>
+						<labelExpression><![CDATA[$F{player_identifier}]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<linePlot>
+					<plot/>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</linePlot>
+			</lineChart>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
