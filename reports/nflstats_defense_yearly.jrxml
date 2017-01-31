@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-01-31T14:13:38 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="nflstats_defense_yearly" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ea2fad4b-c661-4770-b0d0-f684cf419f2a">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="adapters\NflStatsAdapter.xml"/>
+	<queryString language="SQL">
+		<![CDATA[with def_stats as(
+	select g.year_id, AVG(cast(tot_yds as float)) as ypg, AVG(cast(pass_yds as float)) passing_yds_allowed_per_game, 
+    cast(SUM(turnovers) as float)/cast(count(opponent_identifier) as float) turnovers_per_game, 
+	cast(SUM(pass_sacked) as float) / cast(count(opponent_identifier) as float) sacks_per_game, s.opponent_identifier,
+    cast(SUM(team_score) as float) / cast(count(s.opponent_identifier) as float) ppg_allowed
+    from
+    nfl.game_team_stats s
+    inner join nfl.game g on s.game_identifier = g.game_identifier
+    group by s.opponent_identifier, g.year_id
+)
+select *, (turnovers_per_game + sacks_per_game) as calculated from def_stats order by calculated desc limit 10;]]>
+	</queryString>
+	<field name="year_id" class="java.lang.Integer"/>
+	<field name="ypg" class="java.lang.Double"/>
+	<field name="passing_yds_allowed_per_game" class="java.lang.Double"/>
+	<field name="turnovers_per_game" class="java.lang.Double"/>
+	<field name="sacks_per_game" class="java.lang.Double"/>
+	<field name="opponent_identifier" class="java.lang.String"/>
+	<field name="ppg_allowed" class="java.lang.Double"/>
+	<field name="calculated" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="80" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="80" uuid="542c03bb-0669-4fa9-b852-12524298f8bf"/>
+				<subreportParameter name="REPORT_TITLE">
+					<subreportParameterExpression><![CDATA["Nfl Top Defenses by Sacks and Turnovers (since 1950)"]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource()]]></dataSourceExpression>
+				<subreportExpression><![CDATA["report_header.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="72" height="30" uuid="67563ee6-6f91-474a-8539-6689e40d48c1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[year_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="72" y="0" width="69" height="30" uuid="0abe8803-99fc-4816-b659-58e815ba715b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ypg]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="0" width="69" height="30" uuid="4be0d40d-be96-4642-8e6f-ba65fc71e4b0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[passing_yds_allowed_per_game]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="0" width="69" height="30" uuid="43010d23-3025-4fed-9e5e-49c107db66b4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[turnovers_per_game]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="0" width="69" height="30" uuid="91cc927b-ee90-4951-9697-d877bc61db5b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[sacks_per_game]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="348" y="0" width="69" height="30" uuid="962068ec-cd70-42a1-b119-89d31d3b3a0b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[opponent_identifier]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="417" y="0" width="69" height="30" uuid="47fc86bc-3387-4cdb-8a29-56e7e298ebfb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ppg_allowed]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="486" y="0" width="69" height="30" uuid="b5bef4c9-e237-4d5a-aea7-93f53193155b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[calculated]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="72" height="30" uuid="f528e77a-a783-42c9-b50e-83010fd029c8"/>
+				<textFieldExpression><![CDATA[$F{year_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="72" y="0" width="69" height="30" uuid="5728d8d2-3cec-4d44-91f5-26506d48bb6c"/>
+				<textFieldExpression><![CDATA[$F{ypg}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="0" width="69" height="30" uuid="a2a291cf-c2a1-4399-b7e0-f231d67ee621"/>
+				<textFieldExpression><![CDATA[$F{passing_yds_allowed_per_game}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="0" width="69" height="30" uuid="0d641d61-da0f-494e-a137-38ff96c2ff09"/>
+				<textFieldExpression><![CDATA[$F{turnovers_per_game}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="0" width="69" height="30" uuid="1ca56e13-4720-4e73-b42e-4eec26b845eb"/>
+				<textFieldExpression><![CDATA[$F{sacks_per_game}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="348" y="0" width="69" height="30" uuid="c6517a07-1e7f-4324-a23c-349e0b04b7b3"/>
+				<textFieldExpression><![CDATA[$F{opponent_identifier}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="417" y="0" width="69" height="30" uuid="3561c6a3-6c5f-416f-be10-835b3ce3303d"/>
+				<textFieldExpression><![CDATA[$F{ppg_allowed}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="486" y="0" width="69" height="30" uuid="45f8fa80-69a8-4fea-a735-64160e1d0311"/>
+				<textFieldExpression><![CDATA[$F{calculated}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="70" y="30" width="414" height="10" uuid="f3f49df1-c7c9-43d9-9bb9-f611d306a156"/>
+				<subreportParameter name="TEAM_ID">
+					<subreportParameterExpression><![CDATA[$F{opponent_identifier}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="YEAR_ID">
+					<subreportParameterExpression><![CDATA[$F{year_id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["reports/nflstats_defense_by_teamAndYear.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

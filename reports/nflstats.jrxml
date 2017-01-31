@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-01-30T16:30:44 -->
+<!-- 2017-01-31T10:38:08 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="nflstats" pageWidth="1500" pageHeight="612" orientation="Landscape" columnWidth="1460" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d1dfff3b-3a58-41bc-9af3-6fe753ebee1e">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="adapters/NflStatsAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="adapters\NflStatsAdapter.xml"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<subDataset name="nflstats_rushing_yds" uuid="b87df0f6-003e-4e1a-8363-98cc7db7c369">
@@ -24,6 +24,7 @@
 		<field name="team_score" class="java.lang.Integer"/>
 		<field name="opp_score" class="java.lang.Integer"/>
 	</subDataset>
+	<parameter name="PERCENTAGE" class="java.lang.Double"/>
 	<queryString>
 		<![CDATA[select 
 	g.home_team_identifier, g.home_score, g.away_team_identifier, g.away_score, g.year_id,
@@ -32,7 +33,7 @@ from
 	nfl.game_passing p
 inner join nfl.game g on p.game_identifier = g.game_identifier
 where 
-	p.completionpercentage > 80 and
+	p.completionpercentage > $P{PERCENTAGE} and
     ((p.team_identifier = g.home_team_identifier and g.home_score < g.away_score) or
     (p.team_identifier = g.away_team_identifier and g.home_score > g.away_score)) and
     p.attempts >= 25 
@@ -63,19 +64,19 @@ order by
 	<title>
 		<band height="80" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="30" width="510" height="30" uuid="3a738b24-0a26-4b3c-896b-5435ec48df0a"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="16" isBold="false"/>
-				</textElement>
-				<text><![CDATA[Most yards passing in loss when completing at least 80% passes]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="0" y="0" width="205" height="30" uuid="574ded3d-9b09-4993-8b85-b09799e92317"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="22" isBold="true"/>
 				</textElement>
 				<text><![CDATA[NFL Statistic]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="30" y="30" width="880" height="30" uuid="e6292e1d-d54b-4e27-9510-5a9762da3fe9"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Most yards passing when completing at least " + $P{PERCENTAGE} + "% of passes in a loss"]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>

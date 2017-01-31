@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-01-31T11:56:00 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="super_sub" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="97cb252e-6ba7-4985-b4ac-44f04048a587">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="adapters\SuperAdapter.xml"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="565"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="421"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="color" class="java.lang.String">
+		<fieldDescription><![CDATA[color]]></fieldDescription>
+	</field>
+	<field name="material" class="java.lang.String">
+		<fieldDescription><![CDATA[material]]></fieldDescription>
+	</field>
+	<field name="logo" class="java.lang.String">
+		<fieldDescription><![CDATA[logo]]></fieldDescription>
+	</field>
+	<field name="primary" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[primary]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="141" height="20" uuid="52b391ad-cc0c-476f-bead-4cda9439f5a3"/>
+				<text><![CDATA[color]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="0" width="138" height="20" uuid="e20bea1e-af17-4f4a-9eaa-876bce5c4f68"/>
+				<text><![CDATA[material]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="0" width="138" height="20" uuid="b5b95652-92b4-4d60-8c2b-599c95f7819a"/>
+				<text><![CDATA[logo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="417" y="0" width="138" height="20" uuid="8d312ab3-0055-4bb8-b495-6b7f20186410"/>
+				<text><![CDATA[primary]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="141" height="20" uuid="24580f27-ce8c-4908-ba59-03c42b71da49"/>
+				<textFieldExpression><![CDATA[$F{color}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="0" width="138" height="20" uuid="ff8d8aee-f15e-44ca-926c-8ced6e6541f6"/>
+				<textFieldExpression><![CDATA[$F{material}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="0" width="138" height="20" uuid="5035c0bf-3210-49eb-9303-ba866ce8c499"/>
+				<textFieldExpression><![CDATA[$F{logo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="417" y="0" width="138" height="20" uuid="03b2a66f-7e97-48ca-9036-8f78a9b55950"/>
+				<textFieldExpression><![CDATA[$F{primary}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

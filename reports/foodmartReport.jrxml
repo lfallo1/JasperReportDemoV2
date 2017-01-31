@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-01-30T21:37:36 -->
+<!-- 2017-01-31T10:13:33 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="foodmartReport" pageWidth="1684" pageHeight="1190" orientation="Landscape" columnWidth="1644" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e5c20b98-da76-489f-9960-253ef70421c2">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="adapters/FoodmartAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="adapters\FoodmartAdapter.xml"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
@@ -13,29 +13,34 @@
 	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
-	<subDataset name="SalaryDataset" uuid="5d8b9886-f71f-4da3-aaa6-dd06033f8f52">
+	<subDataset name="GrossWeightDataset" uuid="5d8b9886-f71f-4da3-aaa6-dd06033f8f52">
 		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="adapters/FoodmartAdapter.xml"/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="adapters\FoodmartAdapter.xml"/>
 		<queryString language="SQL">
-			<![CDATA[SELECT * from employee limit 10]]>
+			<![CDATA[select product_id, product_name, gross_weight from product group by gross_weight order by gross_weight desc  limit 10;]]>
 		</queryString>
-		<field name="employee_id" class="java.lang.Integer"/>
-		<field name="full_name" class="java.lang.String"/>
-		<field name="first_name" class="java.lang.String"/>
-		<field name="last_name" class="java.lang.String"/>
-		<field name="position_id" class="java.lang.Integer"/>
-		<field name="position_title" class="java.lang.String"/>
-		<field name="store_id" class="java.lang.Integer"/>
-		<field name="department_id" class="java.lang.Integer"/>
-		<field name="birth_date" class="java.sql.Date"/>
-		<field name="hire_date" class="java.sql.Timestamp"/>
-		<field name="end_date" class="java.sql.Timestamp"/>
-		<field name="salary" class="java.math.BigDecimal"/>
-		<field name="supervisor_id" class="java.lang.Integer"/>
-		<field name="education_level" class="java.lang.String"/>
-		<field name="marital_status" class="java.lang.String"/>
-		<field name="gender" class="java.lang.String"/>
-		<field name="management_role" class="java.lang.String"/>
+		<field name="product_id" class="java.lang.Integer"/>
+		<field name="product_name" class="java.lang.String"/>
+		<field name="gross_weight" class="java.lang.Double"/>
+	</subDataset>
+	<subDataset name="ProductWeightCategoryDataset" uuid="215bafad-8105-4476-92f1-c6aaff5cf537">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="adapters\FoodmartAdapter.xml"/>
+		<queryString language="SQL">
+			<![CDATA[select weight_category, count(*) product_count, AVG(gross_weight) average_weight from (
+	select product_id, product_name, gross_weight,
+	case
+		when gross_weight > 20 THEN 3
+		when gross_weight > 15 THEN 2
+		when gross_weight > 10 THEN 1
+	else 0 end as weight_category
+	from product
+) as sub
+group by weight_category;]]>
+		</queryString>
+		<field name="weight_category" class="java.lang.Integer"/>
+		<field name="product_count" class="java.lang.Long"/>
+		<field name="average_weight" class="java.lang.Double"/>
 	</subDataset>
 	<queryString language="SQL">
 		<![CDATA[SELECT * from employee order by salary desc limit 100]]>
@@ -182,7 +187,7 @@
 			</textField>
 			<textField>
 				<reportElement x="970" y="0" width="96" height="30" uuid="af8ef75c-493c-4b63-ad1f-39f38f05f46b"/>
-				<textFieldExpression><![CDATA[$F{end_date}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[IF($F{end_date}==null,"Active", $F{end_date})]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="1066" y="0" width="96" height="30" uuid="7bd5e969-094c-4c06-a85a-6aec02a2d897"/>
@@ -217,35 +222,68 @@
 		<band height="54" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="200" splitType="Stretch">
+		<band height="297" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 			<lineChart>
 				<chart evaluationTime="Report">
-					<reportElement x="0" y="0" width="613" height="200" uuid="c07c1652-0b47-4789-8345-0e11f5a570bb"/>
+					<reportElement x="0" y="0" width="586" height="200" uuid="fcd13237-3185-4a83-a322-3d006ea64d64"/>
+					<chartTitle>
+						<font size="16" isBold="true"/>
+						<titleExpression><![CDATA["Gross weight chart"]]></titleExpression>
+					</chartTitle>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<dataset>
+						<datasetRun subDataset="GrossWeightDataset" uuid="08f46523-ab7a-4141-966f-81bb3e4e5301"/>
+					</dataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Gross weight by product"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{product_name}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{gross_weight}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<linePlot>
+					<plot/>
+					<categoryAxisLabelExpression><![CDATA["Employee"]]></categoryAxisLabelExpression>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisLabelExpression><![CDATA["Salary"]]></valueAxisLabelExpression>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</linePlot>
+			</lineChart>
+			<barChart>
+				<chart evaluationTime="Report">
+					<reportElement x="588" y="0" width="592" height="200" uuid="1d1b522c-cfd0-4c87-9d79-5a3d4c80e3aa"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>
 				</chart>
 				<categoryDataset>
 					<dataset>
-						<datasetRun subDataset="SalaryDataset" uuid="c9f99642-74af-4992-8996-c7d00a68b742"/>
+						<datasetRun subDataset="ProductWeightCategoryDataset" uuid="e089932d-03b6-4584-a506-7855f5459666"/>
 					</dataset>
 					<categorySeries>
-						<seriesExpression><![CDATA[$F{employee_id} + " " + $F{full_name}]]></seriesExpression>
-						<categoryExpression><![CDATA[$F{employee_id}]]></categoryExpression>
-						<valueExpression><![CDATA[ABS( $F{salary})]]></valueExpression>
-						<labelExpression><![CDATA["Employee Name"]]></labelExpression>
+						<seriesExpression><![CDATA["Weight categories"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{weight_category}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{product_count}]]></valueExpression>
 					</categorySeries>
 				</categoryDataset>
-				<linePlot>
+				<barPlot>
 					<plot/>
+					<itemLabel/>
 					<categoryAxisFormat>
 						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
 					</categoryAxisFormat>
 					<valueAxisFormat>
 						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
 					</valueAxisFormat>
-				</linePlot>
-			</lineChart>
+				</barPlot>
+			</barChart>
 		</band>
 	</summary>
 </jasperReport>

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-01-31T13:53:35 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="nflstats_defense_by_teamAndYear" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="899baa4f-543b-4a16-a328-8552e3ea11ac">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="adapters\NflStatsAdapter.xml"/>
+	<parameter name="TEAM_ID" class="java.lang.String"/>
+	<parameter name="YEAR_ID" class="java.lang.Integer"/>
+	<queryString language="SQL">
+		<![CDATA[select s.*, g.year_id
+from nfl.game_team_stats s
+inner join nfl.game g on s.game_identifier = g.game_identifier
+where s.opponent_identifier = $P{TEAM_ID} and g.year_id = $P{YEAR_ID}
+order by g.week]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="game_identifier" class="java.lang.String"/>
+	<field name="team_identifier" class="java.lang.String"/>
+	<field name="year_id" class="java.lang.Integer"/>
+	<field name="pass_yds" class="java.lang.Integer"/>
+	<field name="pass_sacked" class="java.lang.Integer"/>
+	<field name="pass_rating" class="java.lang.Double"/>
+	<field name="rush_yds" class="java.lang.Integer"/>
+	<field name="turnovers" class="java.lang.Integer"/>
+	<field name="first_down" class="java.lang.Integer"/>
+	<field name="team_score" class="java.lang.Integer"/>
+	<field name="opponent_score" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="49" height="30" backcolor="#E8F1FF" uuid="9f6a88cb-c849-4174-af00-73bb32952600"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="49" y="0" width="46" height="30" backcolor="#E8F1FF" uuid="cc400834-cd80-48b8-add9-2a317b267f6d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[game_identifier]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="0" width="46" height="30" backcolor="#E8F1FF" uuid="e71b3c38-1d27-48ab-993d-7154d4ad1e80"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[team_identifier]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="0" width="46" height="30" backcolor="#E8F1FF" uuid="76167ca2-1755-4fcc-a96c-e362ebb04400"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[year_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="187" y="0" width="46" height="30" backcolor="#E8F1FF" uuid="e93a887c-11e4-480d-bf2a-689cc9e6134d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[pass_yds]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="233" y="0" width="46" height="30" backcolor="#E8F1FF" uuid="8f5dc9c9-67ef-4fdb-b846-0127d9aab999"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[pass_sacked]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="0" width="46" height="30" backcolor="#E8F1FF" uuid="f0bd9154-ed21-4a65-a70f-78e3bf8640a8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[pass_rating]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="325" y="0" width="46" height="30" backcolor="#E8F1FF" uuid="ca2c29f8-4657-48d9-b0cf-e211bf97682f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[rush_yds]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="371" y="0" width="46" height="30" backcolor="#E8F1FF" uuid="6aaead37-8676-4577-8031-c72ecad731f6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[turnovers]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="417" y="0" width="46" height="30" backcolor="#E8F1FF" uuid="5c0eeda3-f303-4639-9053-3ac3adc7c171"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[first_down]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="463" y="0" width="46" height="30" backcolor="#E8F1FF" uuid="996a6876-c0db-4e96-b9d7-cf645da8121b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[team_score]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="509" y="0" width="46" height="30" backcolor="#E8F1FF" uuid="53c0de35-0ebd-4c29-ab39-1442f14a85b5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[opponent_score]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="49" height="30" backcolor="#F5F7FF" uuid="c10e343a-f584-4c89-9025-7fcac3cdb302"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="49" y="0" width="46" height="30" backcolor="#F5F7FF" uuid="c18049e1-3b9e-4eb5-9719-6540a5133ddc"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{game_identifier}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="95" y="0" width="46" height="30" backcolor="#F5F7FF" uuid="619c3f64-e4c1-4370-acad-1890369c42eb"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{team_identifier}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="0" width="46" height="30" backcolor="#F5F7FF" uuid="c2bd093b-5d22-4061-b410-5647f813f54b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{year_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="187" y="0" width="46" height="30" backcolor="#F5F7FF" uuid="43697f5a-4fa7-4f02-9ed3-dcdff55488ef"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pass_yds}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="233" y="0" width="46" height="30" backcolor="#F5F7FF" uuid="0226bfef-7873-4042-bc0f-fa6d0ff89e38"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pass_sacked}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="0" width="46" height="30" backcolor="#F5F7FF" uuid="da761516-4960-483e-ac39-98338ea96cc3"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pass_rating}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="325" y="0" width="46" height="30" backcolor="#F5F7FF" uuid="c8d80ab8-9872-4e19-b8d7-d1aaf559cd75"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{rush_yds}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="371" y="0" width="46" height="30" backcolor="#F5F7FF" uuid="94217cf1-21d9-4bd3-b27a-ea797969d85d"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{turnovers}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="417" y="0" width="46" height="30" backcolor="#F5F7FF" uuid="b239b92b-5f93-4a47-8a54-2a2fa6316c4d"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{first_down}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="463" y="0" width="46" height="30" backcolor="#F5F7FF" uuid="2921ed8d-c192-47a1-a345-951686faec08"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{team_score}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="509" y="0" width="46" height="30" backcolor="#F5F7FF" uuid="6652e71c-6938-4147-8cf9-8a8ccc4baa57"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{opponent_score}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
