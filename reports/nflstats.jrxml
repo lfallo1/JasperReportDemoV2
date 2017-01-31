@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-01-30T15:27:25 -->
+<!-- 2017-01-30T16:30:44 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="nflstats" pageWidth="1500" pageHeight="612" orientation="Landscape" columnWidth="1460" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d1dfff3b-3a58-41bc-9af3-6fe753ebee1e">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="adapters\NflStatsAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="adapters/NflStatsAdapter.xml"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<subDataset name="nflstats_rushing_yds" uuid="b87df0f6-003e-4e1a-8363-98cc7db7c369">
 		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="adapters\NflStatsAdapter.xml"/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="adapters/NflStatsAdapter.xml"/>
 		<queryString language="SQL">
 			<![CDATA[select g.game_number, r.* from nfl.game_rushing r inner join nfl.game g on r.game_identifier = g.game_identifier where year_id = 2003 and player_identifier = 'LewiJa00' order by g.date;]]>
 		</queryString>
@@ -74,7 +74,7 @@ order by
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="22" isBold="true"/>
 				</textElement>
-				<text><![CDATA[NFL Statistics]]></text>
+				<text><![CDATA[NFL Statistic]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -189,7 +189,7 @@ order by
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="343" splitType="Stretch">
+		<band height="20" splitType="Stretch">
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 			<textField>
 				<reportElement x="0" y="0" width="112" height="20" uuid="5d5cc006-f526-4c3c-87b0-5b62929bd8ca"/>
@@ -256,36 +256,6 @@ order by
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[((($F{completionpercentage} - 30)/20)  + ($F{touchdowns}/$F{attempts}*100)/(20/3.0) + (((9.5-(($F{interceptions})/$F{attempts})*100)) / 4.0) + (($F{yards}/$F{attempts})-3.0)/4.0)/0.06]]></textFieldExpression>
 			</textField>
-			<lineChart>
-				<chart evaluationTime="Report">
-					<reportElement x="730" y="60" width="729" height="260" uuid="02ab25a6-c46e-48e8-98d6-e04d3b086353"/>
-					<chartTitle/>
-					<chartSubtitle/>
-					<chartLegend/>
-				</chart>
-				<categoryDataset>
-					<dataset>
-						<datasetRun subDataset="nflstats_rushing_yds" uuid="d92730dd-486d-410d-bbae-7968a43ab3d0">
-							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-						</datasetRun>
-					</dataset>
-					<categorySeries>
-						<seriesExpression><![CDATA[$F{player_identifier}]]></seriesExpression>
-						<categoryExpression><![CDATA[$F{game_number}]]></categoryExpression>
-						<valueExpression><![CDATA[$F{rushingyards}]]></valueExpression>
-						<labelExpression><![CDATA[$F{player_identifier}]]></labelExpression>
-					</categorySeries>
-				</categoryDataset>
-				<linePlot>
-					<plot/>
-					<categoryAxisFormat>
-						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
-					</categoryAxisFormat>
-					<valueAxisFormat>
-						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
-					</valueAxisFormat>
-				</linePlot>
-			</lineChart>
 		</band>
 	</detail>
 	<columnFooter>

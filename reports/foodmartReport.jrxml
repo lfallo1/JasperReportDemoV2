@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-01-30T21:37:36 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="foodmartReport" pageWidth="1684" pageHeight="1190" orientation="Landscape" columnWidth="1644" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e5c20b98-da76-489f-9960-253ef70421c2">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="adapters/FoodmartAdapter.xml"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<subDataset name="SalaryDataset" uuid="5d8b9886-f71f-4da3-aaa6-dd06033f8f52">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="adapters/FoodmartAdapter.xml"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT * from employee limit 10]]>
+		</queryString>
+		<field name="employee_id" class="java.lang.Integer"/>
+		<field name="full_name" class="java.lang.String"/>
+		<field name="first_name" class="java.lang.String"/>
+		<field name="last_name" class="java.lang.String"/>
+		<field name="position_id" class="java.lang.Integer"/>
+		<field name="position_title" class="java.lang.String"/>
+		<field name="store_id" class="java.lang.Integer"/>
+		<field name="department_id" class="java.lang.Integer"/>
+		<field name="birth_date" class="java.sql.Date"/>
+		<field name="hire_date" class="java.sql.Timestamp"/>
+		<field name="end_date" class="java.sql.Timestamp"/>
+		<field name="salary" class="java.math.BigDecimal"/>
+		<field name="supervisor_id" class="java.lang.Integer"/>
+		<field name="education_level" class="java.lang.String"/>
+		<field name="marital_status" class="java.lang.String"/>
+		<field name="gender" class="java.lang.String"/>
+		<field name="management_role" class="java.lang.String"/>
+	</subDataset>
+	<queryString language="SQL">
+		<![CDATA[SELECT * from employee order by salary desc limit 100]]>
+	</queryString>
+	<field name="employee_id" class="java.lang.Integer"/>
+	<field name="full_name" class="java.lang.String"/>
+	<field name="first_name" class="java.lang.String"/>
+	<field name="last_name" class="java.lang.String"/>
+	<field name="position_id" class="java.lang.Integer"/>
+	<field name="position_title" class="java.lang.String"/>
+	<field name="store_id" class="java.lang.Integer"/>
+	<field name="department_id" class="java.lang.Integer"/>
+	<field name="birth_date" class="java.sql.Date"/>
+	<field name="hire_date" class="java.sql.Timestamp"/>
+	<field name="end_date" class="java.sql.Timestamp"/>
+	<field name="salary" class="java.math.BigDecimal"/>
+	<field name="supervisor_id" class="java.lang.Integer"/>
+	<field name="education_level" class="java.lang.String"/>
+	<field name="marital_status" class="java.lang.String"/>
+	<field name="gender" class="java.lang.String"/>
+	<field name="management_role" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="108" height="30" uuid="96de4527-e811-4137-9aac-49da13c41c95"/>
+				<text><![CDATA[employee_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="0" width="96" height="30" uuid="28f148ef-7fe6-4e33-bd77-9fcd4f28df14"/>
+				<text><![CDATA[full_name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="204" y="0" width="96" height="30" uuid="d305350f-579b-40c5-a3ca-678bb75028d6"/>
+				<text><![CDATA[first_name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="0" width="96" height="30" uuid="fd75b737-ef02-4dc7-a2e7-820235b8f72d"/>
+				<text><![CDATA[last_name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="396" y="0" width="96" height="30" uuid="adeb6cd5-52f5-472c-b378-be18de2c1138"/>
+				<text><![CDATA[position_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="492" y="0" width="96" height="30" uuid="a819a682-0a02-4256-af07-7a0654160153"/>
+				<text><![CDATA[position_title]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="588" y="0" width="96" height="30" uuid="d6d4e454-2023-4607-934b-e673ad1e5a45"/>
+				<text><![CDATA[store_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="684" y="0" width="96" height="30" uuid="ebb81cd2-8b90-4cf5-9c42-e10fd328f05a"/>
+				<text><![CDATA[department_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="780" y="0" width="96" height="30" uuid="e0673379-595a-4186-b055-76205ed5dcf7"/>
+				<text><![CDATA[birth_date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="876" y="0" width="96" height="30" uuid="0ba02ffc-ac09-4cad-a2e7-d98402f32412"/>
+				<text><![CDATA[hire_date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="972" y="0" width="96" height="30" uuid="fceb994d-17ca-46e6-96c1-d3389c042a18"/>
+				<text><![CDATA[end_date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1068" y="0" width="96" height="30" uuid="d97c2f94-1d17-4ca4-a4bd-97aeef409b02"/>
+				<text><![CDATA[salary]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1164" y="0" width="96" height="30" uuid="710cac3a-0ff3-4885-aaba-c2d3994a89d2"/>
+				<text><![CDATA[supervisor_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1260" y="0" width="96" height="30" uuid="303daa4b-a3e5-4536-a0ab-e0a3ee44a7ba"/>
+				<text><![CDATA[education_level]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1356" y="0" width="96" height="30" uuid="dbfbfd5d-d547-44b0-8564-8717ffdcbc92"/>
+				<text><![CDATA[marital_status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1452" y="0" width="96" height="30" uuid="35fab03a-72de-4ed3-afd5-213867716af0"/>
+				<text><![CDATA[gender]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1548" y="0" width="96" height="30" uuid="32214088-041d-4b53-b936-a04563c9b9e7"/>
+				<text><![CDATA[management_role]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="-2" y="0" width="108" height="30" uuid="5403bc50-f36c-4b64-9b73-724db5a889c8"/>
+				<textFieldExpression><![CDATA[$F{employee_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="106" y="0" width="96" height="30" uuid="00cae7ec-e4cb-479a-a4ad-258ddded9558"/>
+				<textFieldExpression><![CDATA[$F{full_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="202" y="0" width="96" height="30" uuid="cf314e18-d833-4ebb-9816-f3f4337245b8"/>
+				<textFieldExpression><![CDATA[$F{first_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="298" y="0" width="96" height="30" uuid="1f149a37-16c8-42c7-b84c-90e3f251d146"/>
+				<textFieldExpression><![CDATA[$F{last_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="394" y="0" width="96" height="30" uuid="7dd7904b-2d2f-4260-86dd-bf21b329253e"/>
+				<textFieldExpression><![CDATA[$F{position_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="490" y="0" width="96" height="30" uuid="290d36be-6f9f-4e84-a6c4-adfcad0f315e"/>
+				<textFieldExpression><![CDATA[$F{position_title}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="586" y="0" width="96" height="30" uuid="c9ac3e78-fb1b-4d5f-9bbd-9671f8e39a12"/>
+				<textFieldExpression><![CDATA[$F{store_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="682" y="0" width="96" height="30" uuid="f1662bf6-7ce5-4dad-93ca-64adb8ad1f56"/>
+				<textFieldExpression><![CDATA[$F{department_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="778" y="0" width="96" height="30" uuid="b68065cd-dfb1-46fe-98d0-27c82f570cb5"/>
+				<textFieldExpression><![CDATA[$F{birth_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="874" y="0" width="96" height="30" uuid="3b9bc25c-1a47-48e4-807d-5e7653fc6d9e"/>
+				<textFieldExpression><![CDATA[$F{hire_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="970" y="0" width="96" height="30" uuid="af8ef75c-493c-4b63-ad1f-39f38f05f46b"/>
+				<textFieldExpression><![CDATA[$F{end_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1066" y="0" width="96" height="30" uuid="7bd5e969-094c-4c06-a85a-6aec02a2d897"/>
+				<textFieldExpression><![CDATA[$F{salary}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1162" y="0" width="96" height="30" uuid="20c737cf-e211-43de-bc71-bef3e103ea24"/>
+				<textFieldExpression><![CDATA[$F{supervisor_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1258" y="0" width="96" height="30" uuid="7bd81629-2047-445f-9fda-bb38d78fe8e8"/>
+				<textFieldExpression><![CDATA[$F{education_level}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1354" y="0" width="96" height="30" uuid="6cdffe95-343d-4ebe-9f84-8adc74a5f816"/>
+				<textFieldExpression><![CDATA[$F{marital_status}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1450" y="0" width="96" height="30" uuid="9c740ad7-e607-43d5-a2e2-6b98ef4d0d65"/>
+				<textFieldExpression><![CDATA[$F{gender}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1546" y="0" width="96" height="30" uuid="d0261d39-8b93-401b-ac09-ae113e0d68df"/>
+				<textFieldExpression><![CDATA[$F{management_role}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="200" splitType="Stretch">
+			<lineChart>
+				<chart evaluationTime="Report">
+					<reportElement x="0" y="0" width="613" height="200" uuid="c07c1652-0b47-4789-8345-0e11f5a570bb"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<dataset>
+						<datasetRun subDataset="SalaryDataset" uuid="c9f99642-74af-4992-8996-c7d00a68b742"/>
+					</dataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{employee_id} + " " + $F{full_name}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{employee_id}]]></categoryExpression>
+						<valueExpression><![CDATA[ABS( $F{salary})]]></valueExpression>
+						<labelExpression><![CDATA["Employee Name"]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<linePlot>
+					<plot/>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</linePlot>
+			</lineChart>
+		</band>
+	</summary>
+</jasperReport>

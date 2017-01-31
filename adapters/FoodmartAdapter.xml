@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jdbcDataAdapter class="net.sf.jasperreports.data.jdbc.JdbcDataAdapterImpl"><name>Foodmart Adapter</name><driver>com.mysql.jdbc.Driver</driver><username>root</username><password>root</password><savePassword>true</savePassword><url>jdbc:mysql://localhost:3306/foodmart</url><database></database><serverAddress></serverAddress><classpath>/Users/lancefallon/Downloads/mysql-connector-java-5.1.40/mysql-connector-java-5.1.40-bin.jar</classpath></jdbcDataAdapter>
