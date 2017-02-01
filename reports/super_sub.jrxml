@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-01-31T11:56:00 -->
+<!-- 2017-02-01T14:33:53 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="super_sub" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="97cb252e-6ba7-4985-b4ac-44f04048a587">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="adapters\SuperAdapter.xml"/>
 	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="565"/>
@@ -8,11 +8,17 @@
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
+	<field name="gloves" class="com.lance.jasper.model.Glove">
+		<fieldDescription><![CDATA[gloves]]></fieldDescription>
+	</field>
 	<field name="color" class="java.lang.String">
 		<fieldDescription><![CDATA[color]]></fieldDescription>
 	</field>
 	<field name="material" class="java.lang.String">
 		<fieldDescription><![CDATA[material]]></fieldDescription>
+	</field>
+	<field name="boots" class="com.lance.jasper.model.Boot">
+		<fieldDescription><![CDATA[boots]]></fieldDescription>
 	</field>
 	<field name="logo" class="java.lang.String">
 		<fieldDescription><![CDATA[logo]]></fieldDescription>
@@ -20,46 +26,62 @@
 	<field name="primary" class="java.lang.Boolean">
 		<fieldDescription><![CDATA[primary]]></fieldDescription>
 	</field>
+	<field name="cape.color" class="java.lang.String">
+		<fieldDescription><![CDATA[cape.color]]></fieldDescription>
+	</field>
+	<field name="cape.length" class="java.lang.Object">
+		<fieldDescription><![CDATA[cape.length]]></fieldDescription>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<columnHeader>
-		<band height="20" splitType="Stretch">
+		<band height="30" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 			<staticText>
-				<reportElement x="0" y="0" width="141" height="20" uuid="52b391ad-cc0c-476f-bead-4cda9439f5a3"/>
-				<text><![CDATA[color]]></text>
+				<reportElement x="0" y="0" width="120" height="30" uuid="d87a37b2-1df3-4109-b4cf-fe18c98f5d96"/>
+				<text><![CDATA[gloves]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="141" y="0" width="138" height="20" uuid="e20bea1e-af17-4f4a-9eaa-876bce5c4f68"/>
-				<text><![CDATA[material]]></text>
+				<reportElement x="120" y="0" width="180" height="30" uuid="3478975b-85aa-4781-9b62-04e6b64739e6"/>
+				<text><![CDATA[boots]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="279" y="0" width="138" height="20" uuid="b5b95652-92b4-4d60-8c2b-599c95f7819a"/>
-				<text><![CDATA[logo]]></text>
+				<reportElement x="300" y="0" width="120" height="30" uuid="df64938a-4472-4a52-ba29-d9cc88e96121"/>
+				<text><![CDATA[suit color]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="417" y="0" width="138" height="20" uuid="8d312ab3-0055-4bb8-b495-6b7f20186410"/>
-				<text><![CDATA[primary]]></text>
+				<reportElement x="420" y="0" width="80" height="30" uuid="5b154086-543f-4fd4-8027-7be97d8888c2"/>
+				<text><![CDATA[suit material]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="500" y="0" width="55" height="30" uuid="cc0f291c-e147-41e5-ae69-beae2aa21bad"/>
+				<text><![CDATA[suit primary logo]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20" splitType="Stretch">
+		<band height="30" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 			<textField>
-				<reportElement x="0" y="0" width="141" height="20" uuid="24580f27-ce8c-4908-ba59-03c42b71da49"/>
-				<textFieldExpression><![CDATA[$F{color}]]></textFieldExpression>
+				<reportElement x="0" y="0" width="120" height="30" uuid="096c5547-c3ba-4138-860d-ca7a65ba5865"/>
+				<textFieldExpression><![CDATA[$F{gloves}.getColor() + " " + $F{gloves}.getLength().toString()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="141" y="0" width="138" height="20" uuid="ff8d8aee-f15e-44ca-926c-8ced6e6541f6"/>
+				<reportElement x="120" y="0" width="180" height="30" uuid="ba24793c-8180-4799-9ed9-6d8ef853cba3"/>
+				<textFieldExpression><![CDATA[$F{boots}.getColor() + " " + $F{boots}.getHeelStyle().toString() + " " + $F{boots}.getHeight().toString()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="120" height="30" uuid="dc548f9d-f1fd-4fc5-9fd3-a55816dc572a"/>
+				<textFieldExpression><![CDATA["cape: " + $F{cape.length}.toString() + " " + $F{cape.color}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="0" width="80" height="30" uuid="3cf55dfc-886b-4463-9438-211af441dd6d"/>
 				<textFieldExpression><![CDATA[$F{material}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="279" y="0" width="138" height="20" uuid="5035c0bf-3210-49eb-9303-ba866ce8c499"/>
+				<reportElement x="500" y="0" width="55" height="30" uuid="14d17ed8-a02c-4773-8b44-44bc107e5f7b"/>
 				<textFieldExpression><![CDATA[$F{logo}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="417" y="0" width="138" height="20" uuid="03b2a66f-7e97-48ca-9036-8f78a9b55950"/>
-				<textFieldExpression><![CDATA[$F{primary}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-01-31T16:59:43 -->
+<!-- 2017-02-01T11:12:13 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_header" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0453bb21-3dcd-4776-bdbd-b48e181eb175">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="net.sf.jasperreports.print.create.bookmarks" value="true"/>
@@ -27,10 +27,6 @@
 				<textElement textAlignment="Center" verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$P{REPORT_TITLE}]]></textFieldExpression>
 			</textField>
-			<image>
-				<reportElement x="470" y="0" width="90" height="80" uuid="7715a109-429a-4e4d-9e5e-4f11be780581"/>
-				<imageExpression><![CDATA["https://cdn1.iconfinder.com/data/icons/pixel-perfect-1/512/33-dashboard-chart-report-annual-512.png"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 </jasperReport>
