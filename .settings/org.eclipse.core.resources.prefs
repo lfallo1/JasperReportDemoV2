@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//reports/fileListing.jrxml=UTF-8
 encoding//reports/foodmartReport.jrxml=UTF-8
 encoding//reports/nflstats.jrxml=UTF-8
 encoding//reports/nflstats_defense_by_teamAndYear.jrxml=UTF-8
@@ -6,3 +7,6 @@ encoding//reports/nflstats_defense_yearly.jrxml=UTF-8
 encoding//reports/report_header.jrxml=UTF-8
 encoding//reports/super.jrxml=UTF-8
 encoding//reports/super_sub.jrxml=UTF-8
+encoding//reports_v2/QuarterbacksByYear.jrxml=UTF-8
+encoding//reports_v2/college_scores_14-15.jrxml=UTF-8
+encoding/QuarterbacksWeeklyStatsByPlayerAndYear.jrxml=UTF-8

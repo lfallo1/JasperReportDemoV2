@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-02-01T17:16:26 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="QuarterbacksWeeklyStatsByPlayerAndYear" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="11d40cb0-d25b-4c96-93e9-291964e1d5e9">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="adapters\NflStatsAdapter.xml"/>
+	<parameter name="PLAYER_ID" class="java.lang.String"/>
+	<parameter name="YEAR_ID" class="java.lang.Integer"/>
+	<queryString language="SQL">
+		<![CDATA[select * from nfl.game_passing p 
+inner join nfl.game g on p.game_identifier = g.game_identifier
+where year_id = $P{YEAR_ID} and player_identifier = $P{PLAYER_ID}
+order by game_number]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="adjustedyardsperattempt" class="java.lang.Double"/>
+	<field name="completionpercentage" class="java.lang.Double"/>
+	<field name="rating" class="java.lang.Double"/>
+	<field name="yardsperattempt" class="java.lang.Double"/>
+	<field name="attempts" class="java.lang.Integer"/>
+	<field name="completions" class="java.lang.Integer"/>
+	<field name="interceptions" class="java.lang.Integer"/>
+	<field name="sacks" class="java.lang.Integer"/>
+	<field name="sackyards" class="java.lang.Integer"/>
+	<field name="touchdowns" class="java.lang.Integer"/>
+	<field name="yards" class="java.lang.Integer"/>
+	<field name="player_identifier" class="java.lang.String"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="game_identifier" class="java.lang.String"/>
+	<field name="team_identifier" class="java.lang.String"/>
+	<field name="team_score" class="java.lang.Integer"/>
+	<field name="opp_score" class="java.lang.Integer"/>
+	<field name="COLUMN_19" class="java.lang.String"/>
+	<field name="game_link" class="java.lang.String"/>
+	<field name="date" class="java.sql.Date"/>
+	<field name="game_number" class="java.lang.Integer"/>
+	<field name="week" class="java.lang.Integer"/>
+	<field name="day" class="java.lang.String"/>
+	<field name="year_id" class="java.lang.Integer"/>
+	<field name="gametime" class="java.lang.String"/>
+	<field name="local_time" class="java.lang.String"/>
+	<field name="league" class="java.lang.String"/>
+	<field name="result" class="java.lang.String"/>
+	<field name="season_type" class="java.lang.String"/>
+	<field name="home_team_identifier" class="java.lang.String"/>
+	<field name="away_team_identifier" class="java.lang.String"/>
+	<field name="home_score" class="java.lang.Integer"/>
+	<field name="away_score" class="java.lang.Integer"/>
+	<field name="overtime" class="java.lang.Boolean"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="60" height="30" uuid="e45fae7e-5829-4c69-95b7-0a17b49182fe"/>
+				<text><![CDATA[rating]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="0" width="55" height="30" uuid="ad6ea089-b98b-4588-bed0-09ef7896fae6"/>
+				<text><![CDATA[attempts]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="115" y="0" width="55" height="30" uuid="7b1a8505-6a44-4014-b493-e05304dbe1a5"/>
+				<text><![CDATA[completions]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="0" width="55" height="30" uuid="54e63c4f-a675-4f56-88aa-a5c449621dc3"/>
+				<text><![CDATA[interceptions]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="225" y="0" width="55" height="30" uuid="ff3f7dee-5091-45d4-bc91-2f7d6b089ffb"/>
+				<text><![CDATA[touchdowns]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="0" width="55" height="30" uuid="206b682b-e92c-45f8-a7fc-7400ffde7528"/>
+				<text><![CDATA[yards]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="0" width="55" height="30" uuid="3037d33d-26f8-4456-add7-422a3be50296"/>
+				<text><![CDATA[team_score]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="0" width="55" height="30" uuid="f2e03bf1-89c5-4649-afee-049ad513b511"/>
+				<text><![CDATA[opp_score]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="445" y="0" width="55" height="30" uuid="2e13b86a-f53e-4f2b-ad20-30898ec2463c"/>
+				<text><![CDATA[game_number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="500" y="0" width="55" height="30" uuid="965b37ea-fa07-46fd-ac9b-b77524025e22"/>
+				<text><![CDATA[season_type]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="60" height="30" uuid="53cf311f-45d2-4551-8008-e9d4a48cfe89"/>
+				<textFieldExpression><![CDATA[$F{rating}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="0" width="55" height="30" uuid="6701d468-cbec-45d0-9bee-743afdd5c8b0"/>
+				<textFieldExpression><![CDATA[$F{attempts}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="115" y="0" width="55" height="30" uuid="19826659-a8dc-4a23-9d6f-9d815bf4e1d5"/>
+				<textFieldExpression><![CDATA[$F{completions}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="0" width="55" height="30" uuid="6be1bf0f-1c8e-442e-8fa3-8fc8187f9399"/>
+				<textFieldExpression><![CDATA[$F{interceptions}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="225" y="0" width="55" height="30" uuid="7fc19b57-7aa2-4bbf-8731-1e248211b7e9"/>
+				<textFieldExpression><![CDATA[$F{touchdowns}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="0" width="55" height="30" uuid="49a2cfe4-3ab9-4733-bc7a-572ad45f17a2"/>
+				<textFieldExpression><![CDATA[$F{yards}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="335" y="0" width="55" height="30" uuid="f1445ea4-3ed8-4950-aa01-4285bcd3aecc"/>
+				<textFieldExpression><![CDATA[$F{team_score}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="0" width="55" height="30" uuid="845c9f33-0643-46f8-80b5-348f78482936"/>
+				<textFieldExpression><![CDATA[$F{opp_score}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="445" y="0" width="55" height="30" uuid="cf3efe1b-781c-4a4a-99dc-911dcbe0f015"/>
+				<textFieldExpression><![CDATA[$F{game_number}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="500" y="0" width="55" height="30" uuid="b1d3d457-b27c-4b9f-ba1b-06a9cbb05633"/>
+				<textFieldExpression><![CDATA[$F{season_type}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

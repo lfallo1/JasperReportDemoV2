@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-02-01T16:18:31 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="fileListing" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ccd7ff82-872a-4a74-882e-09324116ffb5">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="FileListing Custom Data Source"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[name]]></fieldDescription>
+	</field>
+	<field name="IS_DIRECTORY" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[IS_DIRECTORY]]></fieldDescription>
+	</field>
+	<field name="size" class="java.lang.Long">
+		<fieldDescription><![CDATA[size]]></fieldDescription>
+	</field>
+	<field name="absolute_path" class="java.lang.String">
+		<fieldDescription><![CDATA[absolute_path]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="141" height="30" uuid="062f62cb-fa7e-4f3c-b9af-6fe53ffc2844"/>
+				<text><![CDATA[name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="0" width="138" height="30" uuid="b72d207a-2ee0-4730-9641-7778ed6903b4"/>
+				<text><![CDATA[IS_DIRECTORY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="0" width="138" height="30" uuid="abae15da-46da-4982-9fd7-3ad9221e3b0e"/>
+				<text><![CDATA[size]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="417" y="0" width="138" height="30" uuid="0bf0da6f-1bce-43ff-94af-f1fe01539689"/>
+				<text><![CDATA[absolute_path]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="141" height="30" uuid="da581db1-f711-43e1-98b5-f4e49911f7d5"/>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="0" width="138" height="30" uuid="c38d6fcd-3e6b-489c-89c9-c119c9515f1a"/>
+				<textFieldExpression><![CDATA[$F{IS_DIRECTORY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="0" width="138" height="30" uuid="f93c880b-01ca-453e-b8e0-b98ab36d11bb"/>
+				<textFieldExpression><![CDATA[$F{size}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="RelativeToTallestObject" x="417" y="0" width="138" height="30" uuid="e69acd7c-9314-430c-af03-65d63f2a8826"/>
+				<textFieldExpression><![CDATA[$F{absolute_path}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
