@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-02-01T17:14:36 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="QuarterbacksByYear" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ecf03804-b6f5-4db4-8f56-c395313bfb3a">
+<!-- 2017-02-02T11:17:18 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="QuarterbacksByYear" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="ecf03804-b6f5-4db4-8f56-c395313bfb3a">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="adapters\NflStatsAdapter.xml"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="net.sf.jasperreports.export.xls.one.page.per.sheet" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.white.page.background" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.ignore.cell.border" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.columns" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.rows" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.collapse.row.span" value="true"/>
+	<property name="net.sf.jasperreports.page.break.no.pagination" value="apply"/>
 	<parameter name="YEAR_ID" class="java.lang.Integer">
 		<parameterDescription><![CDATA[The year for the report]]></parameterDescription>
 	</parameter>
@@ -17,42 +24,49 @@ order by player_identifier]]>
 	</queryString>
 	<field name="player_identifier" class="java.lang.String"/>
 	<field name="year_id" class="java.lang.Integer"/>
+	<group name="player_id_grp">
+		<groupExpression><![CDATA[$F{player_identifier}]]></groupExpression>
+		<groupHeader>
+			<band height="54">
+				<subreport>
+					<reportElement stretchType="ElementGroupBottom" x="0" y="43" width="555" height="10" uuid="400c10e4-34cf-40c6-8f6c-639cb7fa186d">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<subreportParameter name="PLAYER_ID">
+						<subreportParameterExpression><![CDATA[$F{player_identifier}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="YEAR_ID">
+						<subreportParameterExpression><![CDATA[$F{year_id}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA["reports_v2/QuarterbacksWeeklyStatsByPlayerAndYear.jasper"]]></subreportExpression>
+				</subreport>
+				<break>
+					<reportElement x="0" y="53" width="555" height="1" uuid="e259daee-9bb4-4064-88bd-505bfd887c6f">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+				</break>
+				<line>
+					<reportElement x="0" y="-1" width="1" height="1" uuid="5323c507-7ae0-4818-b1d7-baffa64be0cb">
+						<propertyExpression name="net.sf.jasperreports.export.xls.sheet.name"><![CDATA[$F{player_identifier}]]></propertyExpression>
+					</reportElement>
+				</line>
+				<textField>
+					<reportElement x="180" y="0" width="199" height="43" uuid="0b748591-b744-4911-ab77-32b9a4a2decd"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{player_identifier}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="79" splitType="Stretch"/>
 	</title>
-	<detail>
-		<band height="200" splitType="Stretch">
-			<textField>
-				<reportElement x="0" y="0" width="140" height="30" uuid="38a89291-5510-4218-926a-19591a3217db"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="14" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{player_identifier}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="140" y="0" width="150" height="30" uuid="aa9eb46f-db59-432d-9bec-2666eb35b960"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="14" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{year_id}]]></textFieldExpression>
-			</textField>
-			<subreport>
-				<reportElement x="0" y="30" width="575" height="170" uuid="90deb688-52d3-4029-9ce8-d69734eb6945"/>
-				<subreportParameter name="YEAR_ID">
-					<subreportParameterExpression><![CDATA[$F{year_id}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="PLAYER_ID">
-					<subreportParameterExpression><![CDATA[$F{player_identifier}]]></subreportParameterExpression>
-				</subreportParameter>
-				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["QuarterbacksWeeklyStatsByPlayerAndYear.jasper"]]></subreportExpression>
-			</subreport>
-		</band>
-	</detail>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>
